@@ -1,17 +1,15 @@
- import 'dotenv/config';
-import { GoogleGenAI } from "@google/genai";
+  const { GoogleGenAI } = require("@google/genai");
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+const ai = new GoogleGenAI({ apiKey: "AIzaSyBKsOm_5Yw30D1OSVyI1_t55emeDCt-ny0" });
 
-async function main() {
+async function generateResponse(prompt) {
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: "Explain how AI works in a few words",
+    model: "gemini-2.0-flash",
+    contents: prompt,
   });
-
-  console.log(response.text());
+  return response.text;
 }
 
-main();
+ module.exports = {
+  generateResponse,
+ };
